@@ -3,13 +3,15 @@ import uuid
 import sys
 
 import kendra_chat_chatglm as chatglm
+import kendra_chat_poe as poe_models
 
 
 USER_ICON = "images/user-icon.png"
 AI_ICON = "images/ai-icon.png"
 MAX_HISTORY_LENGTH = 5
 PROVIDER_MAP = {
-    'chatglm': 'ChatGLM'
+    'chatglm': 'ChatGLM',
+    'poe': 'Poe'
 }
 
 # Check if the user ID is already stored in the session state
@@ -27,10 +29,13 @@ if 'llm_chain' not in st.session_state:
         if (sys.argv[1] == 'chatglm'):
             st.session_state['llm_app'] = chatglm
             st.session_state['llm_chain'] = chatglm.build_chain()
+        elif (sys.argv[1] == 'poe'):
+            st.session_state['llm_app'] = poe_models
+            st.session_state['llm_chain'] = poe_models.build_chain()
         else:
             raise Exception("Unsupported LLM: ", sys.argv[1])
     else:
-        raise Exception("Usage: streamlit run app.py <chatglm>")
+        raise Exception("Usage: streamlit run app.py chatglm or streamlit run app.py poe")
 
 if 'chat_history' not in st.session_state:
     st.session_state['chat_history'] = []
@@ -101,6 +106,8 @@ if clear:
     st.session_state.answers = []
     st.session_state.input = ""
     st.session_state["chat_history"] = []
+    if sys.argv[1] == 'poe':
+        poe_models.disconnect_poe()
 
 def handle_input():
     input = st.session_state.input
