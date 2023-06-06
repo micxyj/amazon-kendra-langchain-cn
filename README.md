@@ -1,5 +1,7 @@
 # Amazon Kendra + ChatGLM on SageMaker/Poe 进行中文增强搜索
 
+![architecture](https://github.com/micxyj/amazon-kendra-langchain-cn/tree/main/archi.png)
+
 ## 英文增强搜索方案请参考以下链接：
 https://aws.amazon.com/cn/blogs/machine-learning/quickly-build-high-accuracy-generative-ai-applications-on-enterprise-data-using-amazon-kendra-langchain-and-large-language-models/
 
@@ -105,3 +107,7 @@ python samples/<sample-file-name.py>
 ```bash
 pip uninstall aws-langchain
 ```
+
+## Limit
+1. 多轮对话能力弱，会出现中英文混合的问题，主要受限于 LangChain 的 prompt 是由英文构建的；
+2. Poe 请求限流。
