@@ -1,6 +1,6 @@
 # Amazon Kendra + ChatGLM on SageMaker/Poe 进行中文增强搜索
 
-![architecture](https://github.com/micxyj/amazon-kendra-langchain-cn/tree/main/archi.png)
+![architecture](./archi.png)
 
 ## 英文增强搜索方案请参考以下链接：
 https://aws.amazon.com/cn/blogs/machine-learning/quickly-build-high-accuracy-generative-ai-applications-on-enterprise-data-using-amazon-kendra-langchain-and-large-language-models/
